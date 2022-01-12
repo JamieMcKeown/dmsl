@@ -1,15 +1,23 @@
 <template>
+  <my-header></my-header>
+  <myMain></myMain>
+  <myFooter></myFooter>
+  
   <img alt="Vue logo" src="./assets/logo.png">
-  <HelloWorld msg="Welcome to Your Vue.js App"/>
+  <Landing msg="Welcome to Your Vue.js App"/>
 </template>
 
 <script>
-import HelloWorld from './components/HelloWorld.vue'
+import Landing from './components/Landing.vue';
+import MyHeader from './components/MyHeader.vue'
+//import Landing from './components/Landing.vue'
+//import Landing from './components/Landing.vue'
 
 export default {
   name: 'App',
   components: {
-    HelloWorld
+    Landing,
+    MyHeader,
   }
 }
 </script>
