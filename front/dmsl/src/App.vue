@@ -4,20 +4,22 @@
   <myFooter></myFooter>
   
   <img alt="Vue logo" src="./assets/logo.png">
-  <Landing msg="Welcome to Your Vue.js App"/>
+ 
 </template>
 
 <script>
-import Landing from './components/Landing.vue';
-import MyHeader from './components/MyHeader.vue'
-//import Landing from './components/Landing.vue'
-//import Landing from './components/Landing.vue'
+
+import MyHeader from './components/MyHeader.vue';
+import MyMain from './components/MyMain.vue';
+import MyFooter from './components/MyFooter.vue';
+
 
 export default {
   name: 'App',
   components: {
-    Landing,
     MyHeader,
+    MyMain,
+    MyFooter
   }
 }
 </script>

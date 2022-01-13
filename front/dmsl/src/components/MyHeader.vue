@@ -7,6 +7,15 @@ export default {
   name: 'MyHeader',
   props: {
     
-  }
+  },
+  computed: {
+
+  },
 }
 </script>
+<style scoped>
+
+h1  {
+    color:red;
+}
+</style>
