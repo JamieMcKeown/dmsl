@@ -3,7 +3,7 @@
   <myMain></myMain>
   <myFooter></myFooter>
   
-  <img alt="Vue logo" src="./assets/logo.png">
+ 
  
 </template>
 

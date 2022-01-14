@@ -26,8 +26,8 @@
       "node": true
     },
     "extends": [
-      "plugin:vue/vue3-essential",
-      "eslint:recommended"
+      "plugin:vue/vue3-essential"
+     
     ],
     "rules": {}
   },
@@ -36,4 +36,5 @@
     "last 2 versions",
     "not dead"
   ]
+  
 }
