@@ -14,11 +14,16 @@ class CreateTeamsTable extends Migration
     public function up()
     {
         Schema::create('teams', function (Blueprint $table) {
-            $table->id();
-            $table->string('division');
+            $table->id('id');
+
+            
+            $table->enum('division', array('Shields', 'MacDonald', 'either'))->nullable();
             $table->string('name');
             $table->string('coach_first_name')->nullable();
             $table->string('coach_last_name')->nullable();
+            
+
+            $table->boolean('need_player')->nullable();
 
             $table->timestamps();
         });
