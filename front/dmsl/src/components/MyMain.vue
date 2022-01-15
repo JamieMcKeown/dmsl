@@ -13,8 +13,8 @@
   <div class="main">
     <p class="sign">Sign in</p>
     <form class="form1">
-      <input class="un " type="text" align="center" placeholder="Username">
-      <input class="pass" type="password" align="center" placeholder="Password">
+      <input class="un " type="text" placeholder="Username">
+      <input class="pass" type="password" placeholder="Password">
       <a class="submit">Sign in</a>
       <p class="forgot"><a href="#">Forgot Password?</a></p>
     </form>       
@@ -44,8 +44,8 @@ export default {
     
     .main {
         background-color: #FFFFFF;
-        width: 400px;
-        height: 400px;
+        width: 350px;
+        height: 350px;
         margin: 7em auto;
         border-radius: 1.5em;
         box-shadow: 0px 11px 35px 2px rgba(0, 0, 0, 0.14);
@@ -57,11 +57,12 @@ export default {
         font-family: 'Ubuntu', sans-serif;
         font-weight: bold;
         font-size: 23px;
-        margin-left: 9%;
     }
     
     .un {
         width: 76%;
+        margin-left: 12%;
+        margin-bottom: 27px;
         color: rgb(38, 50, 56);
         font-weight: 700;
         font-size: 14px;
@@ -73,32 +74,29 @@ export default {
         outline: none;
         box-sizing: border-box;
         border: 2px solid rgba(0, 0, 0, 0.02);
-        margin-bottom: 50px;
-        margin-left: 46px;
         text-align: center;
-        margin-bottom: 27px;
         font-family: 'Ubuntu', sans-serif;
     }
     
     form.form1 {
-        padding-top: 40px;
+        display: flex;
+        flex-direction: column;
+        align-content: space-around;
     }
     
     .pass {
         width: 76%;
+        margin-left: 12%;
         color: rgb(38, 50, 56);
         font-weight: 700;
         font-size: 14px;
         letter-spacing: 1px;
         background: rgba(136, 126, 126, 0.04);
         padding: 10px 20px;
-        border: none;
         border-radius: 20px;
         outline: none;
         box-sizing: border-box;
         border: 2px solid rgba(0, 0, 0, 0.02);
-        margin-bottom: 50px;
-        margin-left: 46px;
         text-align: center;
         margin-bottom: 27px;
         font-family: 'Ubuntu', sans-serif;
@@ -115,13 +113,10 @@ export default {
         border-radius: 5em;
         color: #fff;
         background: linear-gradient(to right, #9C27B0, #E040FB);
-        border: 0;
-        padding-left: 40px;
-        padding-right: 40px;
-        padding-bottom: 10px;
-        padding-top: 10px;
+        width: 76%;
+        margin-left: 12%;
         font-family: 'Ubuntu', sans-serif;
-        margin-left: 9%;
+        padding: 10px 0;
         font-size: 13px;
         box-shadow: 0 0 20px 1px rgba(0, 0, 0, 0.04);
     }
@@ -129,8 +124,7 @@ export default {
     .forgot {
         text-shadow: 0px 0px 3px rgba(117, 117, 117, 0.12);
         color: #E1BEE7;
-        padding-top: 15px;
-        margin-left: 9%;
+        padding-top: 15px;  
     }
     
     a {
