@@ -11,12 +11,13 @@
 
 <body>
   <div class="main">
-    <p class="sign">Sign in</p>
-    <form class="form1">
-      <input class="un " type="text" placeholder="Username">
-      <input class="pass" type="password" placeholder="Password">
-      <a class="submit">Sign in</a>
+    <p class="sign">Sign in / Register</p>
+    <form @submit.prevent  class="form1" method="post">
+      <input class="un" type="text" v-model="input.username" placeholder="Username">
+      <input class="pass" type="password" v-model="input.password" placeholder="Password">
+      <a class="submit" @click="signIn">Sign in</a>
       <p class="forgot"><a href="#">Forgot Password?</a></p>
+      <p class="register"><a href="#">Register</a></p>
     </form>       
                 
     </div>
@@ -27,10 +28,36 @@
 </template>
 
 <script>
+
+import axios from 'axios';
 export default {
   name: 'MyMain',
   props: {
     
+  },
+  data () {
+      return {
+          input: {
+                    username: "",
+                    password: ""
+                },
+          test: "",
+
+      }
+  },
+  methods: {
+      signIn: function() {
+            console.log(this.input.username)
+      }
+
+  },
+   mounted () {
+    axios
+      .post('http://localhost/lavarel/public/login', [{
+          username:  this.username,
+          password: this.pass
+   }] )
+      .then(response => (this.test = response.data))
   }
 }
 </script>
@@ -38,17 +65,16 @@ export default {
 <style scoped>
  
     body {
-        background-color: #F3EBF6;
         font-family: 'Ubuntu', sans-serif;
     }
     
     .main {
         background-color: #FFFFFF;
         width: 350px;
-        height: 350px;
+        height: 400px;
         margin: 7em auto;
         border-radius: 1.5em;
-        box-shadow: 0px 11px 35px 2px rgba(0, 0, 0, 0.14);
+        box-shadow: 0px 11px 35px 2px rgba(0, 0, 0, 0.34);
     }
     
     .sign {
@@ -123,13 +149,18 @@ export default {
     
     .forgot {
         text-shadow: 0px 0px 3px rgba(117, 117, 117, 0.12);
-        color: #E1BEE7;
+        color: #8C55AA;
+        padding-top: 15px;  
+    }
+    .register {
+        text-shadow: 0px 0px 3px rgba(117, 117, 117, 0.12);
+        color: #8C55AA;
         padding-top: 15px;  
     }
     
     a {
         text-shadow: 0px 0px 3px rgba(117, 117, 117, 0.12);
-        color: #E1BEE7;
+        color: #8C55AA;
         text-decoration: none
     }
     
