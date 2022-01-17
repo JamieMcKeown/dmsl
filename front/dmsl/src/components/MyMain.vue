@@ -37,27 +37,29 @@ export default {
   },
   data () {
       return {
-          input: {
-                    username: "",
-                    password: ""
-                },
-          test: "",
-
+        input: {
+                username: "",
+                password: ""
+            },
+        test: '',
       }
   },
   methods: {
-      signIn: function() {
-            console.log(this.input.username)
-      }
+      signIn: function() {  
+             axios
+      .post('http://localhost:8000/api/login', [{
+          username:  this.username,
+          password: this.password
+      }] ).then(response => ([
+          this.test = response.data
+      ]))
+      },
+      
 
   },
    mounted () {
-    axios
-      .post('http://localhost/lavarel/public/login', [{
-          username:  this.username,
-          password: this.pass
-   }] )
-      .then(response => (this.test = response.data))
+   
+     
   }
 }
 </script>

@@ -1,5 +1,5 @@
 <template>
-  <my-header></my-header>
+  <myHeader></myHeader>
   <myMain></myMain>
   <myFooter></myFooter>
   
