@@ -7,6 +7,7 @@ use Illuminate\Foundation\Bus\DispatchesJobs;
 use Illuminate\Foundation\Validation\ValidatesRequests;
 use Illuminate\Routing\Controller as BaseController;
 use Illuminate\Http\Request;
+use App\Models\User;
 
 class UserController extends BaseController
 {
@@ -14,8 +15,16 @@ class UserController extends BaseController
 
     public function login(Request $request) 
     {
+        // Retrieve the user by the attributes, or create it if it doesn't exist...
+        $user = User::create([
+            'first_name' => 'John',
+            'last_name' => 'Johnson',
+            'email' => 'John@john.com',
+            'password' => 'test',
+            'team_id' => 1
+        ]);
         return response()->json([
-            'data' => 'hamster'
+            'data' => $request->username,
         ]);
     }
     

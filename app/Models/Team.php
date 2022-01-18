@@ -12,8 +12,8 @@ class Team extends Model
 
    // relationships
 
-   public function Players()
+   public function Users()
     {
-        return $this->hasMany(Player::class);
+        return $this->hasMany(User::class);
     }
 }
