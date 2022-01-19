@@ -10,13 +10,13 @@
 
         <body>
             <div class="main">
-                    <p class="sign">Sign in / Register</p>
+                    <p class="sign">Register</p>
                     <form @submit.prevent  class="form1" method="post">
                         <input class="un" type="text" v-model="input.username" placeholder="Username">
                         <input class="pass" type="password" v-model="input.password" placeholder="Password">
                         <a class="submit" @click="signIn">Sign in</a>
                         <p class="forgot"><a href="#">Forgot Password?</a></p>
-                        <p class="register"><a href="/register">Register</a></p>
+                        <p class="register"><a href="#">Register</a></p>
                     </form>       
             </div>
         </body>
@@ -25,11 +25,10 @@
 
 <script>
 
-
-
 import axios from 'axios';
 export default {
-  name: 'MyMain',
+  name: 'MyRegistration',
+  
   props: {
     
   },

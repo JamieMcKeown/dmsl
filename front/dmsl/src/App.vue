@@ -1,17 +1,22 @@
 <template>
   <myHeader></myHeader>
-  <myMain></myMain>
+  <myMain>
+    <my-registration></my-registration>
+  </myMain>
   <myFooter></myFooter>
   
  
- 
+
 </template>
 
 <script>
 
+
 import MyHeader from './components/MyHeader.vue';
 import MyMain from './components/MyMain.vue';
 import MyFooter from './components/MyFooter.vue';
+import MyRegistration from './components/MyRegistration.vue';
+
 
 
 export default {
@@ -19,7 +24,8 @@ export default {
   components: {
     MyHeader,
     MyMain,
-    MyFooter
+    MyFooter,
+    MyRegistration,
   }
 }
 </script>

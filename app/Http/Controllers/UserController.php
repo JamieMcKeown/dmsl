@@ -15,17 +15,24 @@ class UserController extends BaseController
 
     public function login(Request $request) 
     {
+
+        // verify if this is an existing user
         // Retrieve the user by the attributes, or create it if it doesn't exist...
-        $user = User::create([
-            'first_name' => 'John',
-            'last_name' => 'Johnson',
-            'email' => 'John@john.com',
-            'password' => 'test',
-            'team_id' => 1
-        ]);
+        // $user = User::create([
+        //     'first_name' => 'John',
+        //     'last_name' => 'Johnson',
+        //     'email' => 'John@john.com',
+        //     'password' => 'test',
+        //     'team_id' => 1
+        // ]);
         return response()->json([
-            'data' => $request->username,
+            'data' => 'banana',
         ]);
+    }
+
+    public function register(Request $request)
+    {
+        
     }
     
 }
