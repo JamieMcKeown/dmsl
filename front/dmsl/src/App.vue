@@ -1,32 +1,15 @@
 <template>
-  <myHeader></myHeader>
-  <myMain>
-    <my-registration></my-registration>
-  </myMain>
-  <myFooter></myFooter>
+  <div id="nav" hidden>
+    <router-link to="/">Login</router-link> |
+    <router-link to="/register">Register</router-link>
+  </div>
+  <router-view/>
   
- 
-
 </template>
 
 <script>
-
-
-import MyHeader from './components/MyHeader.vue';
-import MyMain from './components/MyMain.vue';
-import MyFooter from './components/MyFooter.vue';
-import MyRegistration from './components/MyRegistration.vue';
-
-
-
 export default {
   name: 'App',
-  components: {
-    MyHeader,
-    MyMain,
-    MyFooter,
-    MyRegistration,
-  }
 }
 </script>
 

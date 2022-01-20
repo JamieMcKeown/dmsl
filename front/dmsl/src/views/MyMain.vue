@@ -8,18 +8,22 @@
             <title>Sign in</title>
         </head>
 
+        <my-header></my-header>
+
         <body>
             <div class="main">
                     <p class="sign">Sign in / Register</p>
                     <form @submit.prevent  class="form1" method="post">
-                        <input class="un" type="text" v-model="input.username" placeholder="Username">
+                        <input class="un" type="email" v-model="input.email" placeholder="Email">
                         <input class="pass" type="password" v-model="input.password" placeholder="Password">
                         <a class="submit" @click="signIn">Sign in</a>
                         <p class="forgot"><a href="#">Forgot Password?</a></p>
-                        <p class="register"><a href="/register">Register</a></p>
+                        <p class="register"><router-link to="/register">Registration</router-link></p>
                     </form>       
             </div>
         </body>
+
+        <my-footer></my-footer>
     </html>
 </template>
 
@@ -28,15 +32,21 @@
 
 
 import axios from 'axios';
+import MyHeader from '@/components/MyHeader.vue'
+import MyFooter from '@/components/MyFooter.vue'
 export default {
   name: 'MyMain',
+  components: {
+    MyHeader,
+    MyFooter,
+  },
   props: {
     
   },
   data () {
       return {
         input: {
-                username: "",
+                email: "",
                 password: ""
             },
         test: '',
@@ -47,7 +57,7 @@ export default {
 
              axios
       .post('http://localhost:8000/api/login', [{
-          username:  this.input.username,
+          email:  this.input.email,
           password: this.input.password
       }]).then(response => ([
          this.test = response

@@ -12,11 +12,17 @@
             <div class="main">
                     <p class="sign">Register</p>
                     <form @submit.prevent  class="form1" method="post">
-                        <input class="un" type="text" v-model="input.username" placeholder="Username">
-                        <input class="pass" type="password" v-model="input.password" placeholder="Password">
-                        <a class="submit" @click="signIn">Sign in</a>
-                        <p class="forgot"><a href="#">Forgot Password?</a></p>
-                        <p class="register"><a href="#">Register</a></p>
+                        <input class="un" type="text" v-model="input.email" placeholder="Email">
+                        <input class="un" type="password" v-model="input.password" placeholder="Password">
+                        <input class="un" type="text" v-model="input.first_name" placeholder="First Name">
+                        <input class="un" type="text" v-model="input.last_name" placeholder="Last Name">
+                        <input class="un" type="number" v-model="input.phone" placeholder="Phone">
+                        <input class="un" type="text" v-model="input.contact_preference" placeholder="Contact Preference">
+                        <input class="un" type="text" v-model="input.available_days" placeholder="Available Days">
+                        <input class="un" type="text" v-model="input.available_time" placeholder="Available Time">
+                        <input class="un" type="text" v-model="input.available_position" placeholder="Available Position">
+                        <input class="un" type="text" v-model="input.available_team_id" placeholder="Team I.D.">
+                        <a class="submit" @click="register">Sign in</a>
                     </form>       
             </div>
         </body>
@@ -35,10 +41,20 @@ export default {
   data () {
       return {
         input: {
-                username: "",
-                password: ""
+            first_name: "",		
+            last_name: "",		
+            email: "", 	
+            password: "",		
+            phone: "",		
+            contact_preference: "",	
+            available_days: "",		
+            available_times: "",		
+            available_division: "",		
+            available_position: "",	
+            team_id: "", 	
+            is_online: ""	
             },
-        test: '',
+        
       }
   },
   methods: {
