@@ -48,7 +48,7 @@ export default {
             phone: "",		
             contact_preference: "",	
             available_days: "",		
-            available_times: "",		
+            available_time: "",		
             available_division: "",		
             available_position: "",	
             team_id: "", 	
@@ -58,19 +58,40 @@ export default {
       }
   },
   methods: {
-      signIn: function() {  
+      register: function() {  
 
              axios
-      .post('http://localhost:8000/api/login', [{
-          username:  this.input.username,
-          password: this.input.password
-      }]).then(response => ([
-         this.test = response
-      ]))
+    .post('http://localhost:8000/api/register', [{
+        first_name: this.input.first_name,		
+        last_name: this.input.last_name,		
+        email: this.input.email, 	
+        password: this.input.password,		
+        phone: this.input.phone,		
+        contact_preference: this.input.contact_preference,	
+        available_days: this.input.available_days,		
+        available_time: this.input.available_time,		
+        available_division: this.input.available_division,		
+        available_position: this.input.available_position,	
+        team_id: this.input.available_team_id, 	
+        is_online: true	
+    }]).then(response => ([
+        this.test = response.data
+    ]))
 
-      this.input.username = '';
-      this.input.password = '';
-      },
+    this.input.first_name =  ""		
+    this.input.last_name = ""		
+    this.input.email = ""	
+    this.input.password = ""		
+    this.input.phone = ""		
+    this.input.contact_preference = ""
+    this.input.available_days = ""		
+    this.input.available_time = ""		
+    this.input.available_division = ""		
+    this.input.available_position = ""
+    this.input.available_team_id = "" 	
+            
+
+    },
       
 
   },
@@ -89,15 +110,16 @@ export default {
     
     .main {
         background-color: #FFFFFF;
-        width: 350px;
-        height: 400px;
+        min-width: 300px;
+        max-width: 650px;
+        height:90%;
         margin: 7em auto;
         border-radius: 1.5em;
         box-shadow: 0px 11px 35px 2px rgba(0, 0, 0, 0.34);
     }
     
     .sign {
-        padding-top: 40px;
+        padding-top: 20px;
         color: #8C55AA;
         font-family: 'Ubuntu', sans-serif;
         font-weight: bold;
@@ -107,13 +129,13 @@ export default {
     .un {
         width: 76%;
         margin-left: 12%;
-        margin-bottom: 27px;
+        margin-bottom: 10px;
         color: rgb(38, 50, 56);
-        font-weight: 700;
+        font-weight: 300;
         font-size: 14px;
         letter-spacing: 1px;
         background: rgba(136, 126, 126, 0.04);
-        padding: 10px 20px;
+        padding: 10px 10px;
         border: none;
         border-radius: 20px;
         outline: none;
@@ -133,7 +155,7 @@ export default {
         width: 76%;
         margin-left: 12%;
         color: rgb(38, 50, 56);
-        font-weight: 700;
+        font-weight: 300;
         font-size: 14px;
         letter-spacing: 1px;
         background: rgba(136, 126, 126, 0.04);
@@ -161,9 +183,11 @@ export default {
         width: 76%;
         margin-left: 12%;
         font-family: 'Ubuntu', sans-serif;
+        font-weight: 700;
         padding: 10px 0;
         font-size: 13px;
         box-shadow: 0 0 20px 1px rgba(0, 0, 0, 0.04);
+        margin-bottom: 20px;
     }
     
     .forgot {
