@@ -16,8 +16,8 @@ class CreatePlayersTable extends Migration
         Schema::create('players', function (Blueprint $table) {
             $table->id('id');
 
-            $table->string('first_name');
-            $table->string('last_name');
+            $table->string('first_name')->default('Jamie');
+            $table->string('last_name')->default('McKeown');
             $table->string('email')->unique();
             $table->string('password');
             $table->string('phone')->nullable();
@@ -30,7 +30,7 @@ class CreatePlayersTable extends Migration
             $table->enum('available_division', array('Shields', 'MacDonald', 'either'))->nullable();
             $table->enum('available_position', array('1', '2', '3', 'SS', 'Catcher', 'Pitcher', 'Rover', 'Outfield', 'any'))->nullable();
 
-            $table->integer('team_id')->unsigned();
+            $table->integer('team_id')->unsigned()->nullable();
 
             $table->foreign('team_id')->references('id')->on('teams');
             

@@ -8,12 +8,12 @@
             <title>Sign in</title>
         </head>
 
-        <my-header></my-header>
+        
 
         <body>
             <div class="main">
                     <p class="sign">Sign in / Register</p>
-                    <form @submit.prevent  class="form1" method="post">
+                    <form @submit.prevent  class="form1">
                         <input class="un" type="email" v-model="input.email" placeholder="Email">
                         <input class="pass" type="password" v-model="input.password" placeholder="Password">
                         <a class="submit" @click="signIn">Sign in</a>
@@ -23,7 +23,7 @@
             </div>
         </body>
 
-        <my-footer></my-footer>
+        
     </html>
 </template>
 
@@ -32,13 +32,11 @@
 
 
 import axios from 'axios';
-import MyHeader from '@/components/MyHeader.vue'
-import MyFooter from '@/components/MyFooter.vue'
+
 export default {
   name: 'MyMain',
   components: {
-    MyHeader,
-    MyFooter,
+   
   },
   props: {
     
@@ -63,7 +61,7 @@ export default {
          this.test = response
       ]))
 
-      this.input.username = '';
+      this.input.email = '';
       this.input.password = '';
       },
       
