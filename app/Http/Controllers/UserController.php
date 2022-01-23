@@ -15,16 +15,13 @@ class UserController extends BaseController
 
     public function login(Request $request) 
     {
-
-        // verify if this is an existing user
-        // Retrieve the user by the attributes, or create it if it doesn't exist...
-        // $user = User::create([
-        //     'first_name' => 'John',
-        //     'last_name' => 'Johnson',
-        //     'email' => 'John@john.com',
-        //     'password' => 'test',
-        //     'team_id' => 1
-        // ]);
+       
+        //  verify if this is an existing user
+        //  Retrieve the user by the attributes, or create it if it doesn't exist...
+           $user = User::create([
+            'email' => $request->input->email, 	
+            'password' => $request->input->password,
+           ]);
         return response()->json([
             'data' => 'banana',
         ]);
@@ -33,6 +30,30 @@ class UserController extends BaseController
     public function register(Request $request)
     {
         
+
+        
+       
+
+        
+        
+         $user = User::create([
+             'first_name' => $request->input->first_name,		
+             'last_name' => $request->input->last_name,		
+             'email' => $request->input->email, 	
+             'password' => $request->input->password,		
+             'phone' => $request->input->phone,		
+             'contact_preference' => $request->input->contact_preference,	
+             'available_days' => $request->input->available_days,		
+             'available_times' => $request->input->available_times,		
+             'available_division' => $request->input->available_division,		
+             'available_position' => $request->input->available_position,	
+             'team_id' => $request->input->team_id, 	
+             'is_online' => true	
+         ]);
+
+        return response()->json([
+            'data' => $request->input('first_name'),
+        ]);
     }
     
 }

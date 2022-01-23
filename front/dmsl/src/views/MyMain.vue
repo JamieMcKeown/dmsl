@@ -56,10 +56,10 @@ export default {
       signIn: function() {  
 
              axios
-      .post('http://localhost:8000/api/login', [{
+      .post('http://localhost:8000/api/login', {
           email:  this.input.email,
           password: this.input.password
-      }]).then(response => ([
+      }).then(response => ([
          this.test = response
       ]))
 

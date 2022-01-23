@@ -11,12 +11,12 @@
         <body>
             <div class="main">
                     <p class="sign">Register</p>
-                    <form @submit.prevent  class="form1" method="post">
-                        <input class="un" type="text" v-model="input.email" placeholder="Email">
+                    <form @submit.prevent  class="form1" >
+                        <input class="un" type="email" v-model="input.email" placeholder="Email">
                         <input class="un" type="password" v-model="input.password" placeholder="Password">
                         <input class="un" type="text" v-model="input.first_name" placeholder="First Name">
                         <input class="un" type="text" v-model="input.last_name" placeholder="Last Name">
-                        <input class="un" type="number" v-model="input.phone" placeholder="Phone">
+                        <input class="un" type="tel" v-model="input.phone" placeholder="Phone">
                         <input class="un" type="text" v-model="input.contact_preference" placeholder="Contact Preference">
                         <input class="un" type="text" v-model="input.available_days" placeholder="Available Days">
                         <input class="un" type="text" v-model="input.available_time" placeholder="Available Time">
@@ -61,7 +61,7 @@ export default {
       register: function() {  
 
              axios
-    .post('http://localhost:8000/api/register', [{
+    .post('http://localhost:8000/api/register', {
         first_name: this.input.first_name,		
         last_name: this.input.last_name,		
         email: this.input.email, 	
@@ -74,7 +74,7 @@ export default {
         available_position: this.input.available_position,	
         team_id: this.input.available_team_id, 	
         is_online: true	
-    }]).then(response => ([
+    }).then(response => ([
         this.test = response.data
     ]))
 
