@@ -14,15 +14,19 @@
                     <form @submit.prevent  class="form1" >
                         <input class="un" type="email" v-model="input.email" placeholder="Email">
                         <input class="un" type="password" v-model="input.password" placeholder="Password">
-                        <input class="un" type="text" v-model="input.first_name" placeholder="First Name">
-                        <input class="un" type="text" v-model="input.last_name" placeholder="Last Name">
+                        <input class="un" type="text" v-model="v$.input.first_name.$model" placeholder="First Name">
+                        <input class="un" type="text" v-model="v$.input.last_name.$model" placeholder="Last Name">
                         <input class="un" type="tel" v-model="input.phone" placeholder="Phone">
                         <input class="un" type="text" v-model="input.contact_preference" placeholder="Contact Preference">
                         <input class="un" type="text" v-model="input.available_days" placeholder="Available Days">
                         <input class="un" type="text" v-model="input.available_time" placeholder="Available Time">
                         <input class="un" type="text" v-model="input.available_position" placeholder="Available Position">
                         <input class="un" type="text" v-model="input.available_team_id" placeholder="Team I.D.">
+                        <p v-for="error of v$.$errors" :key="error.$uid">
+                            {{ error.$message }}
+                        </p>
                         <a class="submit" @click="register">Sign in</a>
+
                     </form>       
             </div>
         </body>
@@ -32,11 +36,13 @@
 <script>
 
 import axios from 'axios';
+import useVuelidate from '@vuelidate/core'
+import { required, email } from '@vuelidate/validators'
+
 export default {
   name: 'MyRegistration',
-  
-  props: {
-    
+  setup () {
+    return { v$: useVuelidate() }
   },
   data () {
       return {
@@ -53,14 +59,26 @@ export default {
             available_position: "",	
             team_id: "", 	
             is_online: ""	
-            },
-        
+        },
       }
   },
+  validations () {
+    return {
+        input: {
+            first_name: { required }, 
+            last_name: { required }, 
+        }
+    }
+  },
   methods: {
-      register: function() {  
-
-             axios
+       register () {
+      const result =  this.v$.$validate()
+      if (!result) {
+        // notify user form is invalid
+        return
+      }
+      // perform async actions
+               axios
     .post('http://localhost:8000/api/register', {
         first_name: this.input.first_name,		
         last_name: this.input.last_name,		
@@ -75,23 +93,16 @@ export default {
         team_id: this.input.available_team_id, 	
         is_online: true	
     }).then(response => ([
-        this.test = response.data
+        
     ]))
 
-    this.input.first_name =  ""		
-    this.input.last_name = ""		
-    this.input.email = ""	
-    this.input.password = ""		
-    this.input.phone = ""		
-    this.input.contact_preference = ""
-    this.input.available_days = ""		
-    this.input.available_time = ""		
-    this.input.available_division = ""		
-    this.input.available_position = ""
-    this.input.available_team_id = "" 	
+    
+    }
+       
+    
             
 
-    },
+    
       
 
   },
