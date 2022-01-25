@@ -12,16 +12,16 @@
             <div class="main">
                     <p class="sign">Register</p>
                     <form @submit.prevent  class="form1" >
-                        <input class="un" type="email" v-model="input.email" placeholder="Email">
-                        <input class="un" type="password" v-model="input.password" placeholder="Password">
-                        <input class="un" type="text" v-model="v$.input.first_name.$model" placeholder="First Name">
-                        <input class="un" type="text" v-model="v$.input.last_name.$model" placeholder="Last Name">
-                        <input class="un" type="tel" v-model="input.phone" placeholder="Phone">
-                        <input class="un" type="text" v-model="input.contact_preference" placeholder="Contact Preference">
-                        <input class="un" type="text" v-model="input.available_days" placeholder="Available Days">
-                        <input class="un" type="text" v-model="input.available_time" placeholder="Available Time">
-                        <input class="un" type="text" v-model="input.available_position" placeholder="Available Position">
-                        <input class="un" type="text" v-model="input.available_team_id" placeholder="Team I.D.">
+                        <input class="un" type="email" v-model="email" placeholder="Email">
+                        <input class="un" type="password" v-model="password" placeholder="Password">
+                        <input class="un" type="text" v-model="v$.first_name.$model" placeholder="First Name">
+                        <input class="un" type="text" v-model="v$.last_name.$model" placeholder="Last Name">
+                        <input class="un" type="tel" v-model="phone" placeholder="Phone">
+                        <input class="un" type="text" v-model="contact_preference" placeholder="Contact Preference">
+                        <input class="un" type="text" v-model="available_days" placeholder="Available Days">
+                        <input class="un" type="text" v-model="available_time" placeholder="Available Time">
+                        <input class="un" type="text" v-model="available_position" placeholder="Available Position">
+                        <input class="un" type="text" v-model="team_id" placeholder="Team I.D.">
                         <p v-for="error of v$.$errors" :key="error.$uid">
                             {{ error.$message }}
                         </p>
@@ -45,66 +45,51 @@ export default {
     return { v$: useVuelidate() }
   },
   data () {
-      return {
-        input: {
-            first_name: "",		
-            last_name: "",		
-            email: "", 	
-            password: "",		
-            phone: "",		
-            contact_preference: "",	
-            available_days: "",		
-            available_time: "",		
-            available_division: "",		
-            available_position: "",	
-            team_id: "", 	
-            is_online: ""	
-        },
+      return {       
+        first_name: "",		
+        last_name: "",		
+        email: "", 	
+        password: "",		
+        phone: "",		
+        contact_preference: "",	
+        available_days: "",		
+        available_time: "",		
+        available_division: "",		
+        available_position: "",	
+        team_id: "", 	
+        is_online: ""	     
       }
   },
   validations () {
-    return {
-        input: {
-            first_name: { required }, 
-            last_name: { required }, 
-        }
+    return {  
+        first_name: { required }, 
+        last_name: { required }, 
     }
   },
   methods: {
        register () {
-      const result =  this.v$.$validate()
-      if (!result) {
-        // notify user form is invalid
-        return
-      }
-      // perform async actions
-               axios
-    .post('http://localhost:8000/api/register', {
-        first_name: this.input.first_name,		
-        last_name: this.input.last_name,		
-        email: this.input.email, 	
-        password: this.input.password,		
-        phone: this.input.phone,		
-        contact_preference: this.input.contact_preference,	
-        available_days: this.input.available_days,		
-        available_time: this.input.available_time,		
-        available_division: this.input.available_division,		
-        available_position: this.input.available_position,	
-        team_id: this.input.available_team_id, 	
-        is_online: true	
-    }).then(response => ([
-        
-    ]))
-
-    
-    }
-       
-    
-            
-
-    
-      
-
+            const result =  this.v$.$validate()
+            if (!result) {
+                // notify user form is invalid
+                return
+            }
+            axios.post('http://localhost:8000/api/register', {
+                first_name: this.first_name,		
+                last_name: this.last_name,		
+                email: this.email, 	
+                password: this.password,		
+                phone: this.phone,		
+                contact_preference: this.contact_preference,	
+                available_days: this.available_days,		
+                available_time: this.available_time,		
+                available_division: this.available_division,		
+                available_position: this.available_position,	
+                team_id: this.team_id, 	
+                is_online: true	
+            }).then(response => ([
+                
+            ]))
+        }
   },
    mounted () {
    
@@ -114,6 +99,7 @@ export default {
 </script>
 
 <style scoped>
+   
  
     body {
         font-family: 'Ubuntu', sans-serif;

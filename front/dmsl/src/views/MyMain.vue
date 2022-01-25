@@ -1,5 +1,5 @@
 <template>
-    <html>
+    <html >
         <head>
             <link rel="stylesheet" href="css/style.css">
             <link href="https://fonts.googleapis.com/css?family=Ubuntu" rel="stylesheet">
@@ -14,9 +14,12 @@
             <div class="main">
                     <p class="sign">Sign in / Register</p>
                     <form @submit.prevent  class="form1">
-                        <input class="un" type="email" v-model="input.email" placeholder="Email">
-                        <input class="pass" type="password" v-model="input.password" placeholder="Password">
-                        <a class="submit" @click="signIn">Sign in</a>
+                        <input class="un" type="email" v-model="v$.email.$model" placeholder="Email">
+                        <input class="pass" type="password" v-model="v$.password.$model" placeholder="Password">
+                        <a class="submit" @click="signIn" @class="{ active:isActive }">Sign in</a>
+                        <p v-for="error of v$.$errors" :key="error.$uid">
+                            {{ error.$message }}
+                        </p>
                         <p class="forgot"><a href="#">Forgot Password?</a></p>
                         <p class="register"><router-link to="/register">Registration</router-link></p>
                     </form>       
@@ -32,37 +35,48 @@
 
 
 import axios from 'axios';
+import useVuelidate from '@vuelidate/core'
+import { required, email } from '@vuelidate/validators'
 
 export default {
   name: 'MyMain',
-  components: {
-   
+  setup () {
+    return { v$: useVuelidate() }
   },
   props: {
     
   },
   data () {
       return {
-        input: {
-                email: "",
-                password: ""
-            },
-        test: '',
+        email: "",
+        password: "",
+        isActive: false,
       }
+  },
+  watch () {
+     
+          email
+      
+  },
+  validations () {
+    return {
+        email: { required }, 
+        password: { required },       
+    }
   },
   methods: {
       signIn: function() {  
-
-             axios
-      .post('http://localhost:8000/api/login', {
-          email:  this.input.email,
-          password: this.input.password
-      }).then(response => ([
-         this.test = response
-      ]))
-
-      this.input.email = '';
-      this.input.password = '';
+        const result =  this.v$.$validate()
+        if (!result) {
+            // notify user form is invalid
+            return
+        }    
+        axios.post('http://localhost:8000/api/login', {
+            email:  this.email,
+            password: this.password
+        }).then(response => ([
+            this.$router.push('/register')
+        ]))
       },
       
 
@@ -70,14 +84,18 @@ export default {
    mounted () {
    
      
-  }
+  },
 }
 </script>
 
 <style scoped>
- 
+
+    template {
+        background-color: rgba(0,0,0, 0.95);
+    }
     body {
         font-family: 'Ubuntu', sans-serif;
+        
     }
     
     .main {
