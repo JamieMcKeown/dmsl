@@ -75,7 +75,8 @@ export default {
             email:  this.email,
             password: this.password
         }).then(response => ([
-            this.$router.push('/register')
+            response.status === 200 ?  this.$router.push('/register') : console.log('error')
+           
         ]))
       },
       
@@ -100,8 +101,9 @@ export default {
     
     .main {
         background-color: #FFFFFF;
-        width: 350px;
-        height: 400px;
+        min-width: 300px;
+        max-width: 650px;
+        height:90%;
         margin: 7em auto;
         border-radius: 1.5em;
         box-shadow: 0px 11px 35px 2px rgba(0, 0, 0, 0.34);

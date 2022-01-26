@@ -15,14 +15,24 @@ class LoginController extends BaseController
 
     public function login(Request $request) 
     {
-        $user = Player::create([
-            'email' => $request->input('email'), 	
-            'password' => $request->input('password'),
-        ]);
+        
+       $pw = $request->input('password');
+       $email = $request->input('email');
+       
+       $player = Player::where('email', $email)->get();
+       info($player[0]->password);
+       
+    //    if ($player->password === $pw) {
+    //     return response()->json([
+    //         'data' => $request,
+    //     ]);
+    //    } else {
+    //     return response()->json([
+    //         'data' => 'fail',
+    //     ]);
+    //    }
 
-        return response()->json([
-            'data' => 'banana',
-        ]);
+        
     }
 
 }
