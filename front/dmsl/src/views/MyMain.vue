@@ -20,6 +20,7 @@
                         <p v-for="error of v$.$errors" :key="error.$uid">
                             {{ error.$message }}
                         </p>
+                        <p v-if="serverErrMsg">Email or Password does not match</p>
                         <p class="forgot"><a href="#">Forgot Password?</a></p>
                         <p class="register"><router-link to="/register">Registration</router-link></p>
                     </form>       
@@ -51,6 +52,7 @@ export default {
         email: "",
         password: "",
         isActive: false,
+        serverErrMsg: ""
       }
   },
   watch () {
@@ -75,7 +77,8 @@ export default {
             email:  this.email,
             password: this.password
         }).then(response => ([
-            response.status === 200 ?  this.$router.push('/register') : console.log('error')
+            
+            response.data.data === 'fail' ? this.serverErrMsg = true : this.$router.push('/register')
            
         ]))
       },
