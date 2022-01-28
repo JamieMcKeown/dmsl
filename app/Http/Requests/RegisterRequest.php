@@ -13,10 +13,10 @@ class RegisterRequest extends FormRequest
      *
      * @return bool
      */
-    public function authorize()
-    {
-        return false;
-    }
+    // public function authorize()
+    // {
+    //     return false;
+    // }
 
     /**
      * Get the validation rules that apply to the request.
@@ -26,8 +26,29 @@ class RegisterRequest extends FormRequest
     public function rules()
     {
         return [
-            'email' => required|email|unique,
-            'password' => required
+            'first_name' => 'max:191',		
+            'last_name' => 'max:191',
+            'email' => 'required|email|unique:players,email|min:3',
+            'password' => 'required',		
+            'phone' => 'integer',		
+            'contact_preference' => 'max:191',	
+            'available_days' => 'max:191',		
+            'available_times' => 'max:191',	
+            'available_division' => 'max:191',		
+            'available_position' => 'max:191',	
+            'team_id' => 'integer| max:191',
+            'is_online' => 'boolean', 	
+            
         ];
+    }
+
+
+    public function failedValidation(Validator $validator)
+    {
+    throw new HttpResponseException(response()->json([
+        'success'   => false,
+        'message'   => 'Validation errors',
+        'data'      => $validator->errors()
+    ]));
     }
 }
