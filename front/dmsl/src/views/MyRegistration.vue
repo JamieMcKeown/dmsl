@@ -12,20 +12,86 @@
             <div class="main">
                     <p class="sign">Register</p>
                     <form @submit.prevent  class="form1" >
-                        <input class="un" type="email" v-model="email" placeholder="Email">
-                        <input class="un" type="password" v-model="password" placeholder="Password">
-                        <input class="un" type="text" v-model="v$.first_name.$model" placeholder="First Name">
-                        <input class="un" type="text" v-model="v$.last_name.$model" placeholder="Last Name">
-                        <input class="un" type="tel" v-model="phone" placeholder="Phone">
-                        <input class="un" type="text" v-model="contact_preference" placeholder="Contact Preference">
-                        <input class="un" type="text" v-model="available_days" placeholder="Available Days">
-                        <input class="un" type="text" v-model="available_time" placeholder="Available Time">
-                        <input class="un" type="text" v-model="available_position" placeholder="Available Position">
-                        <input class="un" type="text" v-model="team_id" placeholder="Team I.D.">
+                        <div class="regForm">
+                            <label>Email</label>
+                            <input class="un" type="email" v-model="email">
+                        </div>
+                        <div class="regForm">
+                            <label>Password</label>
+                            <input class="un" type="password" v-model="password">
+                        </div>
+                        <div class="regForm">
+                            <label>First Name</label>
+                              <input class="un" type="text" v-model="v$.first_name.$model" >   
+                        </div>
+                        <div class="regForm">
+                            <label>Last Name</label>
+                              <input class="un" type="text" v-model="v$.last_name.$model">  
+                        </div>
+                        <div class="regForm">
+                            <label>Phone Number</label>
+                              <input class="un" type="tel" v-model="phone" >
+                        </div>
+                        <div class="regForm">
+                                <label>Contact Preference</label>
+                                <select class="un" type="text" v-model="contact_preference">
+                                    <option value="phone">Phone</option>
+                                    <option value="email">Email</option>
+                                </select> 
+                        </div>
+                        <div class="regForm">
+                                <label>Available Days</label>
+                                <select class="un" type="text" v-model="available_days" multiple>
+                                    <option value="Mon">Monday</option>
+                                    <option value="Tues">Tuesday</option>
+                                    <option value="Wed">Wednesday</option>
+                                    <option value="Thur">Thursday</option>
+                                    <option value="Fri">Friday</option>
+                                    <option value="Sat">Saturday</option>
+                                    <option value="Sun">Sunday</option>
+                                </select>
+                        </div>
+                        <div class="regForm">
+                                <label>Available Time</label>
+                                <select class="un" type="text" v-model="available_time">
+                                    <option value="7">7pm</option>
+                                    <option value="9">9pm</option>
+                                    <option value="both">Both</option>
+                                </select>
+                        </div>
+                        <div class="regForm">
+                                <label>Available Position</label>
+                                <select class="un" type="text" v-model="available_position" multiple>
+                                    <option value="pitcher">Pitcher</option>
+                                    <option value="catcher">Catcher</option>
+                                    <option value="1">1st Base</option>
+                                    <option value="2">2nd Base</option>
+                                    <option value="3">3rd Base</option>
+                                    <option value="SS">Short Stop</option>
+                                    <option value="OF">Outfield</option>
+                                    <option value="Rover">Rover</option>
+                                    <option value="Any">Any</option>
+                                </select>
+                        </div>
+                        <div class="regForm">
+                                <label>Team</label>
+                                <select class="un" type="text" v-model="team_id">
+                                    <option value="1">Swamp Donkeys</option>
+                                    <option value="2">Orioles</option>
+                                    <option value="3">Shockers</option>
+                                    <option value="4">Greyhounds</option>
+                                    <option value="5">Goldsluggers</option>
+                                    <option value="6">Les Veterans</option>
+                                    <option value="7">Brewers</option>
+                                    <option value="8">Cards</option>
+                                    <option value="9">Yankees</option>
+                                    <option value="10">Red Sox</option>               
+                                </select>
+                        </div>
                         <p v-for="error of v$.$errors" :key="error.$uid">
                             {{ error.$message }}
                         </p>
-                        <a class="submit" @click="register">Sign in</a>
+                        <a class="submit" @click="register">Register</a>
 
                     </form>       
             </div>
@@ -110,9 +176,16 @@ export default {
         min-width: 300px;
         max-width: 650px;
         height:90%;
-        margin: 7em auto;
+        margin:  auto;
         border-radius: 1.5em;
         box-shadow: 0px 11px 35px 2px rgba(0, 0, 0, 0.34);
+    }
+
+    .regForm {
+        display: flex;
+        flex-direction: row;
+        justify-content: space-between;
+        margin: 0 12%;
     }
     
     .sign {
@@ -124,8 +197,7 @@ export default {
     }
     
     .un {
-        width: 76%;
-        margin-left: 12%;
+        width: 50%;
         margin-bottom: 10px;
         color: rgb(38, 50, 56);
         font-weight: 300;
@@ -196,6 +268,15 @@ export default {
         text-shadow: 0px 0px 3px rgba(117, 117, 117, 0.12);
         color: #8C55AA;
         padding-top: 15px;  
+    }
+
+    label {
+        font-size: 16px;
+        padding-top: 5px;
+        width: 30%;
+        color: #8C55AA;
+        font-family: 'Ubuntu', sans-serif;
+        font-weight: bold;
     }
     
     a {

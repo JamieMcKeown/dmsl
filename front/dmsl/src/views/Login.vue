@@ -14,8 +14,14 @@
             <div class="main">
                     <p class="sign">Sign in / Register</p>
                     <form @submit.prevent  class="form1">
-                        <input class="un" type="email" v-model="v$.email.$model" placeholder="Email">
-                        <input class="pass" type="password" v-model="v$.password.$model" placeholder="Password">
+                        <div class="regForm">
+                            <label>Email</label>
+                            <input class="un" type="email" v-model="v$.email.$model" placeholder="Email">
+                        </div>
+                        <div class="regForm">
+                            <label>Password</label>
+                            <input class="pass" type="password" v-model="v$.password.$model" placeholder="Password">
+                        </div>
                         <a class="submit" @click="signIn" @class="{ active:isActive }">Sign in</a>
                         <p v-for="error of v$.$errors" :key="error.$uid">
                             {{ error.$message }}
@@ -40,7 +46,7 @@ import useVuelidate from '@vuelidate/core'
 import { required, email } from '@vuelidate/validators'
 
 export default {
-  name: 'MyMain',
+  name: 'Login',
   setup () {
     return { v$: useVuelidate() }
   },
@@ -107,7 +113,7 @@ export default {
         min-width: 300px;
         max-width: 650px;
         height:90%;
-        margin: 7em auto;
+        margin: auto;
         border-radius: 1.5em;
         box-shadow: 0px 11px 35px 2px rgba(0, 0, 0, 0.34);
     }
@@ -121,8 +127,7 @@ export default {
     }
     
     .un {
-        width: 76%;
-        margin-left: 12%;
+        width: 50%;
         margin-bottom: 27px;
         color: rgb(38, 50, 56);
         font-weight: 700;
@@ -138,6 +143,22 @@ export default {
         text-align: center;
         font-family: 'Ubuntu', sans-serif;
     }
+
+       label {
+        font-size: 16px;
+        padding-top: 5px;
+        width: 10%;
+        color: #8C55AA;
+        font-family: 'Ubuntu', sans-serif;
+        font-weight: bold;
+    }
+
+     .regForm {
+        display: flex;
+        flex-direction: row;
+        justify-content: space-between;
+        margin: 0 12%;
+    }
     
     form.form1 {
         display: flex;
@@ -146,7 +167,7 @@ export default {
     }
     
     .pass {
-        width: 76%;
+        width: 50%;
         margin-left: 12%;
         color: rgb(38, 50, 56);
         font-weight: 700;
