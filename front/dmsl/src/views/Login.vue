@@ -12,15 +12,15 @@
 
         <body>
             <div class="main">
-                    <p class="sign">Sign in / Register</p>
+                    <p class="sign">Register</p>
                     <form @submit.prevent  class="form1">
                         <div class="regForm">
                             <label>Email</label>
-                            <input class="un" type="email" v-model="v$.email.$model" placeholder="Email">
+                            <input class="un" type="email" v-model="v$.email.$model">
                         </div>
                         <div class="regForm">
                             <label>Password</label>
-                            <input class="pass" type="password" v-model="v$.password.$model" placeholder="Password">
+                            <input class="pass" type="password" v-model="v$.password.$model">
                         </div>
                         <a class="submit" @click="signIn" @class="{ active:isActive }">Sign in</a>
                         <p v-for="error of v$.$errors" :key="error.$uid">
@@ -49,9 +49,6 @@ export default {
   name: 'Login',
   setup () {
     return { v$: useVuelidate() }
-  },
-  props: {
-    
   },
   data () {
       return {
@@ -84,7 +81,7 @@ export default {
             password: this.password
         }).then(response => ([
             
-            response.data.data === 'fail' ? this.serverErrMsg = true : this.$router.push('/register')
+            response.data.data === 'fail' ? this.serverErrMsg = true : this.$router.push('/main')
            
         ]))
       },
@@ -127,7 +124,7 @@ export default {
     }
     
     .un {
-        width: 50%;
+        width: 60%;
         margin-bottom: 27px;
         color: rgb(38, 50, 56);
         font-weight: 700;
@@ -167,7 +164,7 @@ export default {
     }
     
     .pass {
-        width: 50%;
+        width: 60%;
         margin-left: 12%;
         color: rgb(38, 50, 56);
         font-weight: 700;

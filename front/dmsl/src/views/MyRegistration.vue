@@ -118,10 +118,10 @@ export default {
         password: "",		
         phone: "",		
         contact_preference: "",	
-        available_days: "",		
+        available_days: [],		
         available_time: "",		
         available_division: "",		
-        available_position: "",	
+        available_position: [],	
         team_id: "", 	
         is_online: ""	     
       }
