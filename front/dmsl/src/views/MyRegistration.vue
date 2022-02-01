@@ -34,14 +34,14 @@
                         </div>
                         <div class="regForm">
                                 <label>Contact Preference</label>
-                                <select class="un" type="text" v-model="contact_preference">
+                                <select class="un"  v-model="contact_preference">
                                     <option value="phone">Phone</option>
                                     <option value="email">Email</option>
                                 </select> 
                         </div>
                         <div class="regForm">
                                 <label>Available Days</label>
-                                <select class="un" type="text" v-model="available_days" multiple>
+                                <select class="un"  v-model="available_days" multiple>
                                     <option value="Mon">Monday</option>
                                     <option value="Tues">Tuesday</option>
                                     <option value="Wed">Wednesday</option>
@@ -53,15 +53,23 @@
                         </div>
                         <div class="regForm">
                                 <label>Available Time</label>
-                                <select class="un" type="text" v-model="available_time">
+                                <select class="un" v-model="available_time">
                                     <option value="7">7pm</option>
                                     <option value="9">9pm</option>
                                     <option value="both">Both</option>
                                 </select>
                         </div>
                         <div class="regForm">
+                                <label>Available Division</label>
+                                <select class="un" v-model="available_division">
+                                    <option value="Shields">Shields</option>
+                                    <option value="MacDonald">MacDonald</option>
+                                    <option value="both">Both</option>
+                                </select>
+                        </div>
+                        <div class="regForm">
                                 <label>Available Position</label>
-                                <select class="un" type="text" v-model="available_position" multiple>
+                                <select class="un" v-model="available_position" multiple>
                                     <option value="pitcher">Pitcher</option>
                                     <option value="catcher">Catcher</option>
                                     <option value="1">1st Base</option>
@@ -75,7 +83,7 @@
                         </div>
                         <div class="regForm">
                                 <label>Team</label>
-                                <select class="un" type="text" v-model="team_id">
+                                <select class="un"  v-model="team_id">
                                     <option value="1">Swamp Donkeys</option>
                                     <option value="2">Orioles</option>
                                     <option value="3">Shockers</option>
@@ -277,6 +285,7 @@ export default {
         color: #8C55AA;
         font-family: 'Ubuntu', sans-serif;
         font-weight: bold;
+        text-align: left;
     }
     
     a {

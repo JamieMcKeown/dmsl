@@ -11,6 +11,8 @@
         <body>
             <div class="main">
                    <my-header></my-header>
+
+               
                    <my-footer></my-footer>
             </div>
         </body>

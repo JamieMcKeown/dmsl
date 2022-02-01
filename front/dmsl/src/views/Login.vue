@@ -1,5 +1,5 @@
 <template>
-    <html >
+    <html>
         <head>
             <link rel="stylesheet" href="css/style.css">
             <link href="https://fonts.googleapis.com/css?family=Ubuntu" rel="stylesheet">
@@ -12,7 +12,7 @@
 
         <body>
             <div class="main">
-                    <p class="sign">Register</p>
+                    <p class="sign">Sign In</p>
                     <form @submit.prevent  class="form1">
                         <div class="regForm">
                             <label>Email</label>
@@ -97,14 +97,15 @@ export default {
 
 <style scoped>
 
-    template {
-        background-color: rgba(0,0,0, 0.95);
-    }
+   
     body {
         font-family: 'Ubuntu', sans-serif;
         
     }
-    
+
+    #nav {
+        background: #E040FB;
+    }
     .main {
         background-color: #FFFFFF;
         min-width: 300px;
@@ -148,6 +149,7 @@ export default {
         color: #8C55AA;
         font-family: 'Ubuntu', sans-serif;
         font-weight: bold;
+        text-align: left;
     }
 
      .regForm {
@@ -192,8 +194,8 @@ export default {
         border-radius: 5em;
         color: #fff;
         background: linear-gradient(to right, #9C27B0, #E040FB);
-        width: 76%;
-        margin-left: 12%;
+        width: 50%;
+        margin-left: 25%;
         font-family: 'Ubuntu', sans-serif;
         padding: 10px 0;
         font-size: 13px;
