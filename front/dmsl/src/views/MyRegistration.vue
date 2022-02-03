@@ -21,6 +21,10 @@
                             <input class="un" type="password" v-model="password">
                         </div>
                         <div class="regForm">
+                            <label> Re-enter Password</label>
+                            <input class="un" type="password" v-model="passwordConf">
+                        </div>
+                        <div class="regForm">
                             <label>First Name</label>
                               <input class="un" type="text" v-model="v$.first_name.$model" >   
                         </div>
@@ -32,55 +36,7 @@
                             <label>Phone Number</label>
                               <input class="un" type="tel" v-model="phone" >
                         </div>
-                        <div class="regForm">
-                                <label>Contact Preference</label>
-                                <select class="un"  v-model="contact_preference">
-                                    <option value="phone">Phone</option>
-                                    <option value="email">Email</option>
-                                </select> 
-                        </div>
-                        <div class="regForm">
-                                <label>Available Days</label>
-                                <select class="un"  v-model="available_days" multiple>
-                                    <option value="Mon">Monday</option>
-                                    <option value="Tues">Tuesday</option>
-                                    <option value="Wed">Wednesday</option>
-                                    <option value="Thur">Thursday</option>
-                                    <option value="Fri">Friday</option>
-                                    <option value="Sat">Saturday</option>
-                                    <option value="Sun">Sunday</option>
-                                </select>
-                        </div>
-                        <div class="regForm">
-                                <label>Available Time</label>
-                                <select class="un" v-model="available_time">
-                                    <option value="7">7pm</option>
-                                    <option value="9">9pm</option>
-                                    <option value="both">Both</option>
-                                </select>
-                        </div>
-                        <div class="regForm">
-                                <label>Available Division</label>
-                                <select class="un" v-model="available_division">
-                                    <option value="Shields">Shields</option>
-                                    <option value="MacDonald">MacDonald</option>
-                                    <option value="both">Both</option>
-                                </select>
-                        </div>
-                        <div class="regForm">
-                                <label>Available Position</label>
-                                <select class="un" v-model="available_position" multiple>
-                                    <option value="pitcher">Pitcher</option>
-                                    <option value="catcher">Catcher</option>
-                                    <option value="1">1st Base</option>
-                                    <option value="2">2nd Base</option>
-                                    <option value="3">3rd Base</option>
-                                    <option value="SS">Short Stop</option>
-                                    <option value="OF">Outfield</option>
-                                    <option value="Rover">Rover</option>
-                                    <option value="Any">Any</option>
-                                </select>
-                        </div>
+                     
                         <div class="regForm">
                                 <label>Team</label>
                                 <select class="un"  v-model="team_id">
@@ -99,6 +55,7 @@
                         <p v-for="error of v$.$errors" :key="error.$uid">
                             {{ error.$message }}
                         </p>
+                        <p v-if="passwordErrMsg">Passwords must match</p>
                         <a class="submit" @click="register">Register</a>
 
                     </form>       
@@ -123,13 +80,10 @@ export default {
         first_name: "",		
         last_name: "",		
         email: "", 	
-        password: "",		
+        password: "",
+        passwordConf: "",
+        passwordErrMsg: "",		
         phone: "",		
-        contact_preference: "",	
-        available_days: [],		
-        available_time: "",		
-        available_division: "",		
-        available_position: [],	
         team_id: "", 	
         is_online: ""	     
       }
@@ -142,27 +96,22 @@ export default {
   },
   methods: {
        register () {
-            const result =  this.v$.$validate()
-            if (!result) {
-                // notify user form is invalid
-                return
-            }
-            axios.post('http://localhost:8000/api/register', {
+           if (this.password == this.passwordConf) {
+                axios.post('http://localhost:8000/api/register', {
                 first_name: this.first_name,		
                 last_name: this.last_name,		
                 email: this.email, 	
                 password: this.password,		
                 phone: this.phone,		
-                contact_preference: this.contact_preference,	
-                available_days: this.available_days,		
-                available_time: this.available_time,		
-                available_division: this.available_division,		
-                available_position: this.available_position,	
                 team_id: this.team_id, 	
                 is_online: true	
-            }).then(response => ([
+                }).then(response => ([
                 
-            ]))
+                ]))
+           } else {
+               this.passwordErrMsg = true
+           }
+           
         }
   },
    mounted () {
