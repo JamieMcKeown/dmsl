@@ -1,5 +1,16 @@
 <template>
-    <h1>HEADER</h1>
+    <div class="headerCont">
+      <div>
+        <div class="headerBtn">
+          <router-link to="/profile">Profile</router-link>
+        </div>
+      </div>
+      <div>
+        <div class="headerBtn">
+          <router-link to="/logout">Logout</router-link>
+        </div>
+      </div>
+    </div>
 </template>
 
 <script>
@@ -14,8 +25,18 @@ export default {
 }
 </script>
 <style scoped>
-
-h1  {
-    color:blue;
+.headerCont {
+  width: 90%;
+  margin-left: 5%;
+  min-width: 300px;
+  display: flex;
+  justify-content: space-between;
 }
+
+.headerBtn {
+  border-radius: 25%;
+  border: 2px solid white;
+  background: #8C55AA;
+}
+
 </style>

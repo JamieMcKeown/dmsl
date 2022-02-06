@@ -24,7 +24,7 @@ class Player extends Authenticatable
         'password',    
     ];
 
-  
+   
 
     
     public function Teams()

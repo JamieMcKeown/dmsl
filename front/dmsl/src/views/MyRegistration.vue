@@ -92,6 +92,11 @@ export default {
     return {  
         first_name: { required }, 
         last_name: { required }, 
+        email: { required, email }, 
+        password: { required }, 
+        passwordConf: { required }, 
+        phone: { required }, 
+        team_id: { required }, 
     }
   },
   methods: {
@@ -106,7 +111,7 @@ export default {
                 team_id: this.team_id, 	
                 is_online: true	
                 }).then(response => ([
-                
+                    this.$router.push('/profile')
                 ]))
            } else {
                this.passwordErrMsg = true

@@ -5,22 +5,23 @@
             <link href="https://fonts.googleapis.com/css?family=Ubuntu" rel="stylesheet">
             <meta name="viewport" content="width=device-width, initial-scale=1" />
             <link rel="stylesheet" href="path/to/font-awesome/css/font-awesome.min.css">
-            <title>Sign in</title>
+            <title>Profile</title>
         </head>
 
         <body>
             <div class="main">
                    <my-header></my-header>
-                       <div class="regForm">
+                        <form @submit.prevent>
+                            <div class="regForm">
                                 <label>Contact Preference</label>
-                                <select class="un"  v-model="contact_preference">
+                                <select class="un"  v-model="v$.contact_preference.$model">
                                     <option value="phone">Phone</option>
                                     <option value="email">Email</option>
                                 </select> 
                         </div>
                         <div class="regForm">
                                 <label>Available Days</label>
-                                <select class="un"  v-model="available_days" multiple>
+                                <select class="un"  v-model="v$.available_days.$model" multiple>
                                     <option value="Mon">Monday</option>
                                     <option value="Tues">Tuesday</option>
                                     <option value="Wed">Wednesday</option>
@@ -32,7 +33,7 @@
                         </div>
                         <div class="regForm">
                                 <label>Available Time</label>
-                                <select class="un" v-model="available_time">
+                                <select class="un" v-model="v$.available_times.$model">
                                     <option value="7">7pm</option>
                                     <option value="9">9pm</option>
                                     <option value="both">Both</option>
@@ -40,7 +41,7 @@
                         </div>
                         <div class="regForm">
                                 <label>Available Division</label>
-                                <select class="un" v-model="available_division">
+                                <select class="un" v-model="v$.available_division.$model">
                                     <option value="Shields">Shields</option>
                                     <option value="MacDonald">MacDonald</option>
                                     <option value="both">Both</option>
@@ -48,7 +49,7 @@
                         </div>
                         <div class="regForm">
                                 <label>Available Position</label>
-                                <select class="un" v-model="available_position" multiple>
+                                <select class="un" v-model="v$.available_position.$model" multiple>
                                     <option value="pitcher">Pitcher</option>
                                     <option value="catcher">Catcher</option>
                                     <option value="1">1st Base</option>
@@ -60,6 +61,12 @@
                                     <option value="Any">Any</option>
                                 </select>
                         </div>
+                        <a class="update" @click="update">Update</a>
+                        <p v-for="error of v$.$errors" :key="error.$uid">
+                            {{ error.$message }}
+                        </p>
+                        </form>
+                       
                
                    <my-footer></my-footer>
             </div>
@@ -72,10 +79,15 @@
 import axios from 'axios';
 import MyHeader from '../components/MyHeader.vue'
 import MyFooter from '../components/MyFooter.vue'
+import useVuelidate from '@vuelidate/core'
+import { required } from '@vuelidate/validators'
 
 
 export default {
-  name: 'Main',
+  name: 'Profile',
+  setup () {
+    return { v$: useVuelidate() }
+  },
   components: {
       MyHeader,
       MyFooter
@@ -83,21 +95,52 @@ export default {
  
   data () {
       return {       
-       
+        contact_preference: "",
+        available_days: [],
+        available_times: [],
+        available_position: [],
+        available_division: "",
       }
   },
-  methods: {
-      
+
+  validations () {
+    return {  
+        contact_preference: { required }, 
+        available_days: { required }, 
+        available_times: { required }, 
+        available_position: { required }, 
+        available_division: { required }, 
+    }
   },
-   mounted () {
+  methods: {
+       update () {
+           if (this.password == this.passwordConf) {
+                axios.put('http://localhost:8000/api/register', {
+                contact_preference: this.contact_preference,		
+                available_days: this.available_days,		
+                available_times: this.available_times, 	
+                available_position: this.available_position,		
+                available_division: this.available_division,
+                id: this.$route.params.id
+                }).then(response => ([
+                   
+                ]))
+           } else {
+               
+           }
+           
+        }
+  },
+  mounted () {
    
      
   }
 }
+
 </script>
 
 <style scoped>
    
  
-  /* color: #8C55AA;  */
+ 
 </style>

@@ -60,8 +60,7 @@ export default {
   },
   watch () {
      
-          email
-      
+        
   },
   validations () {
     return {
@@ -71,17 +70,14 @@ export default {
   },
   methods: {
       signIn: function() {  
-        const result =  this.v$.$validate()
-        if (!result) {
-            // notify user form is invalid
-            return
-        }    
+        const result =  this.v$.$validate();  
         axios.post('http://localhost:8000/api/login', {
             email:  this.email,
             password: this.password
         }).then(response => ([
             
-            response.data.data === 'fail' ? this.serverErrMsg = true : this.$router.push('/main')
+            response.data.data === 'fail' ? this.serverErrMsg = true : this.$router.push({ path: `/profile/${response.data.id}`})
+             
            
         ]))
       },

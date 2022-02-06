@@ -18,12 +18,13 @@ class LoginController extends BaseController
         
        $pw = $request->input('password');
        $email = $request->input('email');
-       
+      
        $player = Player::where('email', $email)->get();
        
        if ($player[0]->password == $pw) {
         return response()->json([
                      'status' => 'success',
+                     'id' => $player[0]->id,
         ]);
        } else {
         return response()->json([

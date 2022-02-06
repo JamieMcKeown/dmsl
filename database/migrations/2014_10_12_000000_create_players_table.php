@@ -24,11 +24,11 @@ class CreatePlayersTable extends Migration
 
             $table->char('contact_preference', 50)->nullable();
 
-            $table->enum('available_days', array('Mon', 'Tues', 'Wed', 'Thur', 'Fri', 'Sat', 'Sun'))->nullable();
+            $table->text('available_days')->nullable();
             $table->enum('role', array('Player', 'Team Admin'))->nullable();
             $table->enum('available_times', array(7, 9, 'both'))->nullable();
             $table->enum('available_division', array('Shields', 'MacDonald', 'either'))->nullable();
-            $table->enum('available_position', array('1', '2', '3', 'SS', 'Catcher', 'Pitcher', 'Rover', 'Outfield', 'any'))->nullable();
+            $table->text('available_position')->nullable();
 
             $table->integer('team_id')->unsigned()->nullable();
 

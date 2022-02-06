@@ -24,20 +24,36 @@ class RegistrationController extends BaseController
              'email' => $request->input('email'), 	
              'password' => $request->input('password'),	
              'phone' => $request->input('phone'),		
-             'contact_preference' => $request->input('contact_preference'),	
-             'available_days' => $request->input('available_days'),		
-             'available_times' => $request->input('available_times'),	
-             'available_division' => $request->input('available_division'),		
-             'available_position' => $request->input('available_position'),	
              'team_id' => $request->input('team_id'), 	
              'is_online' => true	
          ]);
 
-         $result = true;
+        
 
         return response()->json([
-            'result' => $result,
+            'result' => 'true',
         ]);
     }
     
+    public function update(Request $request)
+    {
+        $player = Player::find($request->input('id'));
+        
+
+        
+         
+        $player->contact_preference = $request->input('contact_preference');		
+        $player->available_days = $request->input('available_days');		
+        $player->available_times = $request->input('available_times');		
+        $player->available_position = ($request->input('available_position'));		
+        $player->available_division  = $request->input('available_division');
+        
+        $player->save();
+             
+        
+
+        return response()->json([
+            'result' => 'true',
+        ]);
+    }
 }
