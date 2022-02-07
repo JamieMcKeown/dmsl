@@ -21,3 +21,4 @@ Route::post('/login', 'App\Http\Controllers\LoginController@login');
 //Register
 Route::post('/register', 'App\Http\Controllers\RegistrationController@register');
 Route::put('/register', 'App\Http\Controllers\RegistrationController@update');
+Route::get('/register/{id}', 'App\Http\Controllers\RegistrationController@get');

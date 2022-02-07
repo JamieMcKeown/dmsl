@@ -132,7 +132,20 @@ export default {
         }
   },
   mounted () {
-   
+        
+           
+                axios.get('http://localhost:8000/api/register/' + this.$route.params.id)
+                     .then(response => ([
+                      
+                        this.contact_preference = response.data.result.contact_preference,
+                        this.available_days = response.data.result.available_days,
+                        this.available_times = response.data.result.available_times,
+                        this.available_position = response.data.result.available_position,
+                        this.available_division = response.data.result.available_division,
+                ]))
+            
+           
+        
      
   }
 }

@@ -38,10 +38,7 @@ class RegistrationController extends BaseController
     public function update(Request $request)
     {
         $player = Player::find($request->input('id'));
-        
 
-        
-         
         $player->contact_preference = $request->input('contact_preference');		
         $player->available_days = $request->input('available_days');		
         $player->available_times = $request->input('available_times');		
@@ -54,6 +51,14 @@ class RegistrationController extends BaseController
 
         return response()->json([
             'result' => 'true',
+        ]);
+    }
+
+    public function get(Request $request, $id)
+    {
+        $player = Player::find($id);
+        return response()->json([
+            'result' => $player,
         ]);
     }
 }
