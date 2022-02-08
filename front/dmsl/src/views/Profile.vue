@@ -1,77 +1,64 @@
 <template>
-    <html>
-        <head>
-            <link rel="stylesheet" href="css/style.css">
-            <link href="https://fonts.googleapis.com/css?family=Ubuntu" rel="stylesheet">
-            <meta name="viewport" content="width=device-width, initial-scale=1" />
-            <link rel="stylesheet" href="path/to/font-awesome/css/font-awesome.min.css">
-            <title>Profile</title>
-        </head>
-
-        <body>
-            <div class="main">
-                   <my-header></my-header>
-                        <form @submit.prevent>
-                            <div class="regForm">
-                                <label>Contact Preference</label>
-                                <select class="un"  v-model="v$.contact_preference.$model">
-                                    <option value="phone">Phone</option>
-                                    <option value="email">Email</option>
-                                </select> 
-                        </div>
-                        <div class="regForm">
-                                <label>Available Days</label>
-                                <select class="un"  v-model="v$.available_days.$model" multiple>
-                                    <option value="Mon">Monday</option>
-                                    <option value="Tues">Tuesday</option>
-                                    <option value="Wed">Wednesday</option>
-                                    <option value="Thur">Thursday</option>
-                                    <option value="Fri">Friday</option>
-                                    <option value="Sat">Saturday</option>
-                                    <option value="Sun">Sunday</option>
-                                </select>
-                        </div>
-                        <div class="regForm">
-                                <label>Available Time</label>
-                                <select class="un" v-model="v$.available_times.$model">
-                                    <option value="7">7pm</option>
-                                    <option value="9">9pm</option>
-                                    <option value="both">Both</option>
-                                </select>
-                        </div>
-                        <div class="regForm">
-                                <label>Available Division</label>
-                                <select class="un" v-model="v$.available_division.$model">
-                                    <option value="Shields">Shields</option>
-                                    <option value="MacDonald">MacDonald</option>
-                                    <option value="both">Both</option>
-                                </select>
-                        </div>
-                        <div class="regForm">
-                                <label>Available Position</label>
-                                <select class="un" v-model="v$.available_position.$model" multiple>
-                                    <option value="pitcher">Pitcher</option>
-                                    <option value="catcher">Catcher</option>
-                                    <option value="1">1st Base</option>
-                                    <option value="2">2nd Base</option>
-                                    <option value="3">3rd Base</option>
-                                    <option value="SS">Short Stop</option>
-                                    <option value="OF">Outfield</option>
-                                    <option value="Rover">Rover</option>
-                                    <option value="Any">Any</option>
-                                </select>
-                        </div>
-                        <a class="update" @click="update">Update</a>
-                        <p v-for="error of v$.$errors" :key="error.$uid">
-                            {{ error.$message }}
-                        </p>
-                        </form>
-                       
-               
-                   <my-footer></my-footer>
+    <div class="main">
+        <my-header :onHome="onHome"/>
+        <form @submit.prevent>
+            <div class="regForm">
+                <label>Contact Preference</label>
+                <select class="un"  v-model="v$.contact_preference.$model">
+                    <option value="phone">Phone</option>
+                    <option value="email">Email</option>
+                </select> 
             </div>
-        </body>
-    </html>
+            <div class="regForm">
+                <label>Available Days</label>
+                <select class="un"  v-model="v$.available_days.$model" multiple>
+                    <option value="Mon">Monday</option>
+                    <option value="Tues">Tuesday</option>
+                    <option value="Wed">Wednesday</option>
+                    <option value="Thur">Thursday</option>
+                    <option value="Fri">Friday</option>
+                    <option value="Sat">Saturday</option>
+                    <option value="Sun">Sunday</option>
+                </select>
+            </div>
+            <div class="regForm">
+                <label>Available Time</label>
+                <select class="un" v-model="v$.available_times.$model">
+                    <option value="7">7pm</option>
+                    <option value="9">9pm</option>
+                    <option value="both">Both</option>
+                </select>
+            </div>
+            <div class="regForm">
+                <label>Available Division</label>
+                <select class="un" v-model="v$.available_division.$model">
+                    <option value="Shields">Shields</option>
+                    <option value="MacDonald">MacDonald</option>
+                    <option value="both">Both</option>
+                </select>
+            </div>
+            <div class="regForm">
+                <label>Available Position</label>
+                <select class="un" v-model="v$.available_position.$model" multiple>
+                    <option value="pitcher">Pitcher</option>
+                    <option value="catcher">Catcher</option>
+                    <option value="1">1st Base</option>
+                    <option value="2">2nd Base</option>
+                    <option value="3">3rd Base</option>
+                    <option value="SS">Short Stop</option>
+                    <option value="OF">Outfield</option>
+                    <option value="Rover">Rover</option>
+                    <option value="Any">Any</option>
+                </select>
+            </div>
+            <a class="update" @click="update">Update</a>
+            <p v-for="error of v$.$errors" :key="error.$uid">
+                {{ error.$message }}
+            </p>
+        </form>
+        <index-coach-tools />
+        <my-footer></my-footer>
+    </div>
 </template>
 
 <script>
@@ -79,6 +66,7 @@
 import axios from 'axios';
 import MyHeader from '../components/MyHeader.vue'
 import MyFooter from '../components/MyFooter.vue'
+import IndexCoachTools from '../components/IndexCoachTools.vue'
 import useVuelidate from '@vuelidate/core'
 import { required } from '@vuelidate/validators'
 
@@ -90,11 +78,13 @@ export default {
   },
   components: {
       MyHeader,
-      MyFooter
+      MyFooter,
+      IndexCoachTools,
   },
  
   data () {
-      return {       
+      return {     
+        onHome: false,  
         contact_preference: "",
         available_days: [],
         available_times: [],

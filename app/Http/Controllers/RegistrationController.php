@@ -28,10 +28,13 @@ class RegistrationController extends BaseController
              'is_online' => true	
          ]);
 
-        
+         $player->save();
+
+        info($player);
 
         return response()->json([
             'result' => 'true',
+            'id' => $player->id,
         ]);
     }
     

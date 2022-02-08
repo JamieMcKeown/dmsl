@@ -1,46 +1,27 @@
 <template>
-    <html>
-        <head>
-            <link rel="stylesheet" href="css/style.css">
-            <link href="https://fonts.googleapis.com/css?family=Ubuntu" rel="stylesheet">
-            <meta name="viewport" content="width=device-width, initial-scale=1" />
-            <link rel="stylesheet" href="path/to/font-awesome/css/font-awesome.min.css">
-            <title>Sign in</title>
-        </head>
-
-        
-
-        <body>
-            <div class="main">
-                    <p class="sign">Sign In</p>
-                    <form @submit.prevent  class="form1">
-                        <div class="regForm">
-                            <label>Email</label>
-                            <input class="un" type="email" v-model="v$.email.$model">
-                        </div>
-                        <div class="regForm">
-                            <label>Password</label>
-                            <input class="pass" type="password" v-model="v$.password.$model">
-                        </div>
-                        <a class="submit" @click="signIn" @class="{ active:isActive }">Sign in</a>
-                        <p v-for="error of v$.$errors" :key="error.$uid">
-                            {{ error.$message }}
-                        </p>
-                        <p v-if="serverErrMsg">Email or Password does not match</p>
-                        <p class="forgot"><a href="#">Forgot Password?</a></p>
-                        <p class="register"><router-link to="/register">Registration</router-link></p>
-                    </form>       
-            </div>
-        </body>
-
-        
-    </html>
+    <div class="main">
+            <p class="sign">Sign In</p>
+            <form @submit.prevent  class="form1">
+                <div class="regForm">
+                    <label>Email</label>
+                    <input class="un" type="email" v-model="v$.email.$model">
+                </div>
+                <div class="regForm">
+                    <label>Password</label>
+                    <input class="pass" type="password" v-model="v$.password.$model">
+                </div>
+                <a class="submit" @click="signIn" @class="{ active:isActive }">Sign in</a>
+                <p v-for="error of v$.$errors" :key="error.$uid">
+                    {{ error.$message }}
+                </p>
+                <p v-if="serverErrMsg">Email or Password does not match</p>
+                <p class="forgot"><a href="#">Forgot Password?</a></p>
+                <p class="register"><router-link to="/register">Registration</router-link></p>
+            </form>       
+    </div> 
 </template>
 
 <script>
-
-
-
 import axios from 'axios';
 import useVuelidate from '@vuelidate/core'
 import { required, email } from '@vuelidate/validators'
@@ -58,10 +39,6 @@ export default {
         serverErrMsg: ""
       }
   },
-  watch () {
-     
-        
-  },
   validations () {
     return {
         email: { required }, 
@@ -74,34 +51,16 @@ export default {
         axios.post('http://localhost:8000/api/login', {
             email:  this.email,
             password: this.password
-        }).then(response => ([
-            
-            response.data.data === 'fail' ? this.serverErrMsg = true : this.$router.push({ path: `/profile/${response.data.id}`})
-             
-           
+        }).then(response => ([          
+            response.data.data === 'fail' ? this.serverErrMsg = true : this.$router.push({ path: `/profile/${response.data.id}`})    
         ]))
       },
-      
-
-  },
-   mounted () {
-   
-     
   },
 }
 </script>
 
 <style scoped>
 
-   
-    body {
-        font-family: 'Ubuntu', sans-serif;
-        
-    }
-
-    #nav {
-        background: #E040FB;
-    }
     .main {
         background-color: #FFFFFF;
         min-width: 300px;

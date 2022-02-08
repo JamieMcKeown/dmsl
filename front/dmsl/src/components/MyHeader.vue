@@ -2,7 +2,8 @@
     <div class="headerCont">
       <div>
         <div class="headerBtn">
-          <router-link to="/profile">Profile</router-link>
+          <router-link v-if="onHome" to="/profile">Profile</router-link>
+          <router-link v-else to="/standings">League Home</router-link>
         </div>
       </div>
       <div>
@@ -16,9 +17,7 @@
 <script>
 export default {
   name: 'MyHeader',
-  props: {
-    
-  },
+  props: ['onHome'],
   computed: {
 
   },

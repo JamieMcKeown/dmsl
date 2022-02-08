@@ -111,7 +111,8 @@ export default {
                 team_id: this.team_id, 	
                 is_online: true	
                 }).then(response => ([
-                    this.$router.push('/profile')
+                    console.log(response),
+                    this.$router.push({ path: `/profile/${response.data.id}`})
                 ]))
            } else {
                this.passwordErrMsg = true
@@ -119,19 +120,10 @@ export default {
            
         }
   },
-   mounted () {
-   
-     
-  }
 }
 </script>
 
 <style scoped>
-   
- 
-    body {
-        font-family: 'Ubuntu', sans-serif;
-    }
     
     .main {
         background-color: #FFFFFF;
