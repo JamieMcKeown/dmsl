@@ -1,67 +1,55 @@
 <template>
-    <html>
-        <head>
-            <link rel="stylesheet" href="css/style.css">
-            <link href="https://fonts.googleapis.com/css?family=Ubuntu" rel="stylesheet">
-            <meta name="viewport" content="width=device-width, initial-scale=1" />
-            <link rel="stylesheet" href="path/to/font-awesome/css/font-awesome.min.css">
-            <title>Sign in</title>
-        </head>
+    <div class="main">
+            <p class="sign">Register</p>
+            <form @submit.prevent  class="form1" >
+                <div class="regForm">
+                    <label>Email</label>
+                    <input class="un" type="email" v-model="email">
+                </div>
+                <div class="regForm">
+                    <label>Password</label>
+                    <input class="un" type="password" v-model="password">
+                </div>
+                <div class="regForm">
+                    <label> Re-enter Password</label>
+                    <input class="un" type="password" v-model="passwordConf">
+                </div>
+                <div class="regForm">
+                    <label>First Name</label>
+                        <input class="un" type="text" v-model="v$.first_name.$model" >   
+                </div>
+                <div class="regForm">
+                    <label>Last Name</label>
+                        <input class="un" type="text" v-model="v$.last_name.$model">  
+                </div>
+                <div class="regForm">
+                    <label>Phone Number</label>
+                        <input class="un" type="tel" v-model="phone" >
+                </div>
+                
+                <div class="regForm">
+                        <label>Team</label>
+                        <select class="un"  v-model="team_id">
+                            <option value="1">Swamp Donkeys</option>
+                            <option value="2">Orioles</option>
+                            <option value="3">Shockers</option>
+                            <option value="4">Greyhounds</option>
+                            <option value="5">Goldsluggers</option>
+                            <option value="6">Les Veterans</option>
+                            <option value="7">Brewers</option>
+                            <option value="8">Cards</option>
+                            <option value="9">Yankees</option>
+                            <option value="10">Red Sox</option>               
+                        </select>
+                </div>
+                <p v-for="error of v$.$errors" :key="error.$uid">
+                    {{ error.$message }}
+                </p>
+                <p v-if="passwordErrMsg">Passwords must match</p>
+                <a class="submit" @click="register">Register</a>
 
-        <body>
-            <div class="main">
-                    <p class="sign">Register</p>
-                    <form @submit.prevent  class="form1" >
-                        <div class="regForm">
-                            <label>Email</label>
-                            <input class="un" type="email" v-model="email">
-                        </div>
-                        <div class="regForm">
-                            <label>Password</label>
-                            <input class="un" type="password" v-model="password">
-                        </div>
-                        <div class="regForm">
-                            <label> Re-enter Password</label>
-                            <input class="un" type="password" v-model="passwordConf">
-                        </div>
-                        <div class="regForm">
-                            <label>First Name</label>
-                              <input class="un" type="text" v-model="v$.first_name.$model" >   
-                        </div>
-                        <div class="regForm">
-                            <label>Last Name</label>
-                              <input class="un" type="text" v-model="v$.last_name.$model">  
-                        </div>
-                        <div class="regForm">
-                            <label>Phone Number</label>
-                              <input class="un" type="tel" v-model="phone" >
-                        </div>
-                     
-                        <div class="regForm">
-                                <label>Team</label>
-                                <select class="un"  v-model="team_id">
-                                    <option value="1">Swamp Donkeys</option>
-                                    <option value="2">Orioles</option>
-                                    <option value="3">Shockers</option>
-                                    <option value="4">Greyhounds</option>
-                                    <option value="5">Goldsluggers</option>
-                                    <option value="6">Les Veterans</option>
-                                    <option value="7">Brewers</option>
-                                    <option value="8">Cards</option>
-                                    <option value="9">Yankees</option>
-                                    <option value="10">Red Sox</option>               
-                                </select>
-                        </div>
-                        <p v-for="error of v$.$errors" :key="error.$uid">
-                            {{ error.$message }}
-                        </p>
-                        <p v-if="passwordErrMsg">Passwords must match</p>
-                        <a class="submit" @click="register">Register</a>
-
-                    </form>       
-            </div>
-        </body>
-    </html>
+            </form>       
+        </div>
 </template>
 
 <script>

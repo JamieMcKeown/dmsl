@@ -8,7 +8,7 @@
       </div>
       <div>
         <div class="headerBtn">
-          <router-link to="/logout">Logout</router-link>
+          <router-link to="/">Logout</router-link>
         </div>
       </div>
     </div>

@@ -1,6 +1,6 @@
 <template>
     <div>
-        <my-header />
+        <my-header :onHome="onHome" />
         <league-options />
         <h1>standings</h1>
         <index-coach-tools />
@@ -29,7 +29,7 @@ export default {
  
   data () {
       return {     
-       
+       onHome: true,
       }
   },
 }
