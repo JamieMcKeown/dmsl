@@ -11,13 +11,12 @@ use App\Http\Requests\RegisterRequest;
 use App\Models\Player;
 
 
-class RegistrationController extends BaseController
+class PlayerController extends BaseController
 {
     use AuthorizesRequests, DispatchesJobs, ValidatesRequests;
 
     public function register(RegisterRequest $request)
     {
-
          $player = Player::create([
              'first_name' => $request->input('first_name'),		
              'last_name' => $request->input('last_name'),		
@@ -49,11 +48,27 @@ class RegistrationController extends BaseController
         $player->available_division  = $request->input('available_division');
         
         $player->save();
-             
+
+        return response()->json([
+            'result' => $player,
+        ]);
+    }
+    public function search(Request $request)
+    {
+        $day = '["' . $request->input('day') . '"]';
+        $position = '["' . $request->input('position') . '"]';
+        $division = $request->input('division');
+        $time = $request->input('time');
+
+        $players = Player::where('available_position', $position)
+            ->where('available_days', $day)
+            ->where('available_division', $division)
+            ->where('available_times', $time)
+            ->get();
         
 
         return response()->json([
-            'result' => 'true',
+            'result' => $players,
         ]);
     }
 

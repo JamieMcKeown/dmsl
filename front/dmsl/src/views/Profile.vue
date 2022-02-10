@@ -12,13 +12,13 @@
             <div class="regForm">
                 <label>Available Days</label>
                 <select class="un"  v-model="v$.available_days.$model" multiple>
-                    <option value="Mon">Monday</option>
-                    <option value="Tues">Tuesday</option>
-                    <option value="Wed">Wednesday</option>
-                    <option value="Thur">Thursday</option>
-                    <option value="Fri">Friday</option>
-                    <option value="Sat">Saturday</option>
-                    <option value="Sun">Sunday</option>
+                    <option value="Monday">Monday</option>
+                    <option value="Tuesday">Tuesday</option>
+                    <option value="Wednesday">Wednesday</option>
+                    <option value="Thursday">Thursday</option>
+                    <option value="Friday">Friday</option>
+                    <option value="Saturday">Saturday</option>
+                    <option value="Sunday">Sunday</option>
                 </select>
             </div>
             <div class="regForm">
@@ -52,6 +52,7 @@
                 </select>
             </div>
             <a class="update" @click="update">Update</a>
+            <p v-if="success">Success</p>
             <p v-for="error of v$.$errors" :key="error.$uid">
                 {{ error.$message }}
             </p>
@@ -84,11 +85,12 @@ export default {
  
   data () {
       return {     
-        onHome: false,  
+        onHome: false, 
+        success: false, 
         contact_preference: "",
-        available_days: [],
-        available_times: [],
-        available_position: [],
+        available_days: "",
+        available_times: "",
+        available_position: "",
         available_division: "",
       }
   },
@@ -103,6 +105,7 @@ export default {
     }
   },
   methods: {
+      
        update () {
            if (this.password == this.passwordConf) {
                 axios.put('http://localhost:8000/api/register', {
@@ -113,7 +116,12 @@ export default {
                 available_division: this.available_division,
                 id: this.$route.params.id
                 }).then(response => ([
-                   
+                        this.contact_preference = response.data.result.contact_preference,
+                        this.available_days = response.data.result.available_days,
+                        this.available_times = response.data.result.available_times,
+                        this.available_position = response.data.result.available_position,
+                        this.available_division = response.data.result.available_division,
+                        this.success = true,
                 ]))
            } else {
                
@@ -121,22 +129,15 @@ export default {
            
         }
   },
-  mounted () {
-        
-           
-                axios.get('http://localhost:8000/api/register/' + this.$route.params.id)
-                     .then(response => ([
-                      
-                        this.contact_preference = response.data.result.contact_preference,
-                        this.available_days = response.data.result.available_days,
-                        this.available_times = response.data.result.available_times,
-                        this.available_position = response.data.result.available_position,
-                        this.available_division = response.data.result.available_division,
-                ]))
-            
-           
-        
-     
+  mounted () {       
+    axios.get('http://localhost:8000/api/register/' + this.$route.params.id)
+            .then(response => ([
+            this.contact_preference = response.data.result.contact_preference,
+            this.available_days = response.data.result.available_days,
+            this.available_times = response.data.result.available_times,
+            this.available_position = response.data.result.available_position,
+            this.available_division = response.data.result.available_division,  
+    ]))
   }
 }
 

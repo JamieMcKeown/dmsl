@@ -18,7 +18,8 @@ use Illuminate\Support\Facades\Route;
 //Login
 Route::post('/login', 'App\Http\Controllers\LoginController@login');
 
-//Register
-Route::post('/register', 'App\Http\Controllers\RegistrationController@register');
-Route::put('/register', 'App\Http\Controllers\RegistrationController@update');
-Route::get('/register/{id}', 'App\Http\Controllers\RegistrationController@get');
+//Players
+Route::post('/register', 'App\Http\Controllers\PlayerController@register');
+Route::post('/register/search', 'App\Http\Controllers\PlayerController@search');
+Route::put('/register', 'App\Http\Controllers\PlayerController@update');
+Route::get('/register/{id}', 'App\Http\Controllers\PlayerController@get');
