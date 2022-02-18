@@ -21,7 +21,11 @@ class Player extends Authenticatable
      */
     protected $fillable = [
         'email',
-        'password',    
+        'password',
+        'phone',
+        'first_name',
+        'last_name',
+        'contact_preference',    
     ];
 
    

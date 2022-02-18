@@ -3,7 +3,7 @@
       <div>
         <div class="headerBtn">
           <router-link v-if="onHome" to="/profile" >Profile</router-link>
-          <router-link v-else to="/standings">League Home</router-link>
+          <router-link v-else to="/standings">League</router-link>
         </div>
       </div>
       <div>
@@ -18,6 +18,7 @@
 export default {
   name: 'MyHeader',
   props: ['onHome'],
+
   
 
 }
@@ -33,9 +34,19 @@ export default {
 }
 
 .headerBtn {
-  border-radius: 25%;
+  border-radius: 10px;
+  padding: 10px;
   border: 2px solid white;
+   width:80px;
+  text-align: center;
   background: #8C55AA;
+  box-shadow: 2px 2px rgba(255,255,255,0.4);
 }
+
+.headerBtn a{
+  color: white;
+  text-decoration-line: none;
+}
+
 
 </style>

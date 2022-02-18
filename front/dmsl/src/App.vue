@@ -14,6 +14,9 @@ export default {
 </script>
 
 <style>
+html {
+  background: rgba(255,255,245,0.6);
+}
 
 
 #app {
@@ -24,6 +27,16 @@ export default {
   color: #2c3e50;
   margin-top: 60px;
   
+}
+
+#app .main {
+      background-color: #FFFFFF;
+    min-width: 300px;
+    max-width: 650px;
+    height: 650px;
+    padding: 5% 0;
+    border-radius: 1.5em;
+    box-shadow: 0px 11px 35px 2px rgb(0 0 0 / 34%);
 }
 
 

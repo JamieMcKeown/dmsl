@@ -65,7 +65,7 @@ export default {
         background-color: #FFFFFF;
         min-width: 300px;
         max-width: 650px;
-        height:90%;
+        height:90% !important;
         margin: auto;
         border-radius: 1.5em;
         box-shadow: 0px 11px 35px 2px rgba(0, 0, 0, 0.34);

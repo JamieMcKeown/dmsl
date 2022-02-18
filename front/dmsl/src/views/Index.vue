@@ -2,7 +2,29 @@
     <div>
         <my-header  :onHome="onHome" />
         <league-options />
-        <h1>index</h1>
+        <div class="cont">
+            <div class="teams">
+                <div class="teamName">
+                    <p>Swamp Donkeys</p>
+                    <p>Orioles</p>
+                    <p>Shockers</p>
+                    <p>Greyhounds</p>
+                    <p>Goldsluggers</p>
+                    <p>Les Veterans</p>
+                </div>
+                <div class="teamAbbrev">
+                    
+                </div>
+            </div>
+            <div class="fields">
+                <div class="fieldName">
+                    
+                </div>
+                <div class="fieldAbbrev">
+
+                </div>
+            </div>
+        </div>
         <index-coach-tools />
         <my-footer />
     </div>   

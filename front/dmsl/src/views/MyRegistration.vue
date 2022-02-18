@@ -24,7 +24,7 @@
                 </div>
                 <div class="regForm">
                     <label>Phone Number</label>
-                        <input class="un" type="tel" v-model="phone" >
+                        <input class="un" type="text" v-model="phone" >
                 </div>
                 
                 <div class="regForm">
