@@ -2,7 +2,9 @@
     <div>
         <my-header :onHome="onHome"/>
         <league-options />
-        <h1>scores</h1>
+        <div class="bodyCont">
+            
+        </div>
         <index-coach-tools />
         <my-footer />
     </div>   

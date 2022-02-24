@@ -96,11 +96,11 @@ export default {
                 email: this.email, 	
                 password: this.password,		
                 phone: this.phone,		
-                team_id: this.team_id, 	
+                team_id: parseInt(this.team_id),	
                 is_online: true	
                 }).then(response => ([
-                    console.log(response),
-                    this.$router.push({ path: `/profile/${response.data.id}`})
+                    this.$router.push({ path: `/profile/${response.data.id}`}),
+                    
                 ]))
            } else {
                this.passwordErrMsg = true

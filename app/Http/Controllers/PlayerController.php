@@ -11,6 +11,7 @@ use App\Http\Requests\RegisterRequest;
 use App\Models\Player;
 
 
+
 class PlayerController extends BaseController
 {
     use AuthorizesRequests, DispatchesJobs, ValidatesRequests;
@@ -60,16 +61,17 @@ class PlayerController extends BaseController
         $division = $request->input('division');
         $time = $request->input('time');
 
+        
+        $teams = [];
         $players = Player::where('available_position', $position)
             ->where('available_days', $day)
             ->where('available_division', $division)
             ->where('available_times', $time)
             ->get();
-        
 
         return response()->json([
             'result' => $players,
-        ]);
+        ]); 
     }
 
     public function get(Request $request, $id)

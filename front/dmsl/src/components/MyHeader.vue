@@ -2,7 +2,7 @@
     <div class="headerCont">
       <div>
         <div class="headerBtn">
-          <router-link v-if="onHome" to="/profile" >Profile</router-link>
+          <a v-if="onHome" @click="profile">Profile</a>
           <router-link v-else to="/standings">League</router-link>
         </div>
       </div>
@@ -17,9 +17,20 @@
 <script>
 export default {
   name: 'MyHeader',
+  data() {
+    return {
+      id: '',
+    }
+  },
   props: ['onHome'],
-
-  
+  methods: {
+    profile () {
+      this.$router.push({ path: `/profile/${this.id}`})
+    }
+  },
+  mounted () {   
+   this.id = localStorage.getItem('id')
+  }
 
 }
 

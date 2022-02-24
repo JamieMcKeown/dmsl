@@ -1,6 +1,6 @@
 <template>
     <div>
-        <my-header />
+        <my-header :onHome="onHome" />
         <league-options />
         <div class="bodyCont">
             <div class="top">
@@ -48,6 +48,7 @@
                 <a class="search" @click="search">Search</a>
             </form>
             <p v-if="allFields">Please select an option from all fields</p>       
+            <p v-if="noResults">No players match your search</p>       
             </div>
             <div class="bottom">
                 <ul>
@@ -69,12 +70,6 @@ import MyFooter from '../components/MyFooter.vue'
 import LeagueOptions from '../components/LeagueOptions.vue'
 import IndexCoachTools from '../components/IndexCoachTools.vue'
 
-
-
-
-
-
-
 export default {
   name: 'coachtool',
   components: {
@@ -92,48 +87,67 @@ export default {
        time: "",
        players: [],
        allFields: false,
+       noResults: false,
+       teamName: "",
+       onHome: true,
       }
   },
   methods: {
       search: function() {  
+        
         if (this.position == '' || this.dayOfWeek == '' || this.division == '' || this.time == '' ){
             this.allFields = true
         } else {
+            this.noResults = false,
             axios.post('http://localhost:8000/api/register/search', {
             position:  this.position,
             day: this.dayOfWeek,
             division: this.division,
             time: this.time
-            }).then(response => ([          
+            }).then(response => ([    
+            console.log(response.data.result.length),
+            response.data.result.length < 1 ? this.noResults = true : this.noResults = false,
             response.data.result.forEach(player => {
                 if (player.contact_preference == 'email'){
-                   
-                    player.phone = phone.email
+                    player.phone = player.email
+                }
+                if (player.team_id == 1 ){
+                    player.team_id = "SD"
+                }
+                if (player.team_id == 2 ){
+                    player.team_id = "OR"
+                }
+                if (player.team_id == 3 ){
+                    player.team_id = "SKR"
+                }
+                if (player.team_id == 4 ){
+                    player.team_id = "GH"
+                }
+                if (player.team_id == 5 ){
+                    player.team_id = "GS"
+                }
+                if (player.team_id == 6 ){
+                    player.team_id = "Vet"
                 }
             }),
             this.players = response.data.result,
-            console.log(this.players),
             this.allFields = false,
             ]))
         }
       },
   },
-  computed: {
-      
-
-  }
 }
 
 </script>
 
-
-
 <style scoped>
+
+    
 
     li {
         list-style-type: none;
         color: #8C55AA;
-        font-size: 23px;
+        font-size: 16px;
     }
     
     .main {
@@ -260,6 +274,5 @@ export default {
         border-radius: 15px;
 
     }
- 
- 
+
 </style>

@@ -25,7 +25,8 @@ class Player extends Authenticatable
         'phone',
         'first_name',
         'last_name',
-        'contact_preference',    
+        'contact_preference',
+        'team_id'    
     ];
 
    

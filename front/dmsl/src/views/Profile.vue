@@ -117,6 +117,7 @@ export default {
   methods: {
       
        update () {
+           console.log(localStorage.getItem('id'))
            if (this.password == this.passwordConf) {
                 axios.put('http://localhost:8000/api/register', {
                 contact_preference: this.contact_preference,		
@@ -141,7 +142,8 @@ export default {
         }
   },
 
-  mounted () {       
+  mounted () {   
+    localStorage.setItem('id', this.$route.params.id ),    
     axios.get('http://localhost:8000/api/register/' + this.$route.params.id)
             .then(response => ([
             this.contact_preference = response.data.result.contact_preference,

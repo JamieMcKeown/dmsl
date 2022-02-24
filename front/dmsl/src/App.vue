@@ -25,7 +25,7 @@ html {
   -moz-osx-font-smoothing: grayscale;
   text-align: center;
   color: #2c3e50;
-  margin-top: 60px;
+  margin-top: 20px;
   
 }
 
@@ -38,6 +38,12 @@ html {
     border-radius: 1.5em;
     box-shadow: 0px 11px 35px 2px rgb(0 0 0 / 34%);
 }
+
+  .bodyCont {
+        width: 90%;
+        margin-left: 5%;
+        margin: 20px 0px;
+    }
 
 
 </style>
