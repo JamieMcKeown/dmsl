@@ -55,7 +55,15 @@ export default {
             response.data.data === 'fail' ? this.serverErrMsg = true : this.$router.push({ path: `/profile/${response.data.id}`})    
         ]))
       },
+       getKeyboard: function(event) {
+         if (event.key == "Enter"){
+             this.signIn()
+         }
+        }
   },
+  mounted () {
+     window.addEventListener("keydown", this.getKeyboard);
+    }
 }
 </script>
 

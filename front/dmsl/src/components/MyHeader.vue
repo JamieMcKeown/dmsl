@@ -1,13 +1,13 @@
 <template>
     <div class="headerCont">
       <div>
-        <div class="headerBtn">
+        <div class="headerBtn" :class="{ clicked: isClicked }">
           <a v-if="onHome" @click="profile">Profile</a>
           <router-link v-else to="/standings">League</router-link>
         </div>
       </div>
       <div>
-        <div class="headerBtn">
+        <div class="headerBtn" :class="{ clicked: isClicked }">
           <router-link to="/">Logout</router-link>
         </div>
       </div>
@@ -20,11 +20,14 @@ export default {
   data() {
     return {
       id: '',
+      isClicked: false,
     }
   },
   props: ['onHome'],
   methods: {
     profile () {
+      this.isClicked = true;
+      console.log(this.isClicked);
       this.$router.push({ path: `/profile/${this.id}`})
     }
   },
@@ -54,9 +57,20 @@ export default {
   box-shadow: 2px 2px rgba(255,255,255,0.4);
 }
 
+
 .headerBtn a{
   color: white;
   text-decoration-line: none;
+}
+
+.clicked {
+  border-radius: 10px;
+  padding: 10px;
+  border: 2px solid #8C55AA !important;
+  width:80px;
+  text-align: center;
+  background: white !important;
+  box-shadow: 2px 2px rgba(255,255,255,0.4);
 }
 
 

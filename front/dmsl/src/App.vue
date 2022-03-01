@@ -39,11 +39,22 @@ html {
     box-shadow: 0px 11px 35px 2px rgb(0 0 0 / 34%);
 }
 
-  .bodyCont {
-        width: 90%;
-        margin-left: 5%;
-        margin: 20px 0px;
-    }
+.bodyCont {
+      width: 90%;
+      margin-left: 5%;
+      margin: 20px 0px;
+  }
+
+
+.clicked {
+    border-radius: 10px;
+  padding: 10px;
+  border: 2px solid #8C55AA;
+   width:80px;
+  text-align: center;
+  background: white;
+  box-shadow: 2px 2px rgba(255,255,255,0.4);
+}
 
 
 </style>
